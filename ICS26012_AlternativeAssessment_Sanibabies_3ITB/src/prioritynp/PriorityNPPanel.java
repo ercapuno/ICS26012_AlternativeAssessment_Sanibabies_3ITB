@@ -41,12 +41,7 @@ import model.Process;
 import model.ScheduleResult;
 import scheduler.CpuScheduler;
 
-/**
- * Input/output screen for Priority (Non-Preemptive) scheduling.
- * Reads and validates the process table, runs the scheduler, and shows the
- * Gantt chart, the per-process results, and the summary metrics.
- * All scheduling logic lives in {@link PriorityNonPreemptive}; this class only handles the GUI.
- */
+
 public class PriorityNPPanel extends JPanel {
 
     private static final String WINDOW_TITLE = "Priority (Non-Preemptive) Scheduling";
@@ -54,7 +49,7 @@ public class PriorityNPPanel extends JPanel {
     private static final int MIN_PROCESSES = 10;
     private static final int MAX_PROCESSES = 20;
     private static final int DEFAULT_PROCESSES = MIN_PROCESSES;
-    /** Largest allowed arrival, burst or priority value. Keeps sums far from int overflow. */
+    
     private static final int MAX_INPUT_VALUE = 9999;
 
     private static final int COL_PID = 0;
@@ -100,13 +95,7 @@ public class PriorityNPPanel extends JPanel {
     private final JLabel cpuUtilizationValue = new JLabel(NO_VALUE);
     private final JLabel throughputValue = new JLabel(NO_VALUE);
 
-    /**
-     * Opens this module in its own window, hiding the menu until the window closes.
-     * Matches {@link gui.ModuleLauncher}, so the menu can use PriorityNPPanel::openWindow.
-     *
-     * @param sampleView true for the read-only Sample window (both sample problems, computed);
-     *                   false for the normal editable module
-     */
+  
     public static void openWindow(final JFrame menu, boolean sampleView) {
         JFrame frame = new JFrame(sampleView ? WINDOW_TITLE + " - Sample" : WINDOW_TITLE);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -130,8 +119,7 @@ public class PriorityNPPanel extends JPanel {
     }
 
     /**
-     * The Sample window: a Back to Menu button above the sample problems, stacked
-     * vertically in one scrollable area.
+     * The Sample window: a Back to Menu button above the sample problems
      */
     private static JPanel buildSampleWindowContent() {
         JPanel samples = new JPanel();
@@ -180,10 +168,7 @@ public class PriorityNPPanel extends JPanel {
         resizeInputRows(DEFAULT_PROCESSES);
     }
 
-    /**
-     * A fixed, read-only display of one sample problem. The inputs are filled in and the
-     * results are computed by the algorithm, exactly as if Compute had been clicked.
-     */
+    
     public PriorityNPPanel(String heading, List<Process> sample) {
         super(new BorderLayout(0, 4));
         this.readOnly = true;
